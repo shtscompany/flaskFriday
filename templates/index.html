@@ -1,0 +1,19 @@
+<h1>from index</h1>
+<p>my name is {{first_name}}</p>
+<p>{{stuff|safe}}</p>
+
+<h3>Favorite Pizza:</h3>
+{% for topping in favorite_pizza %}
+    {% if topping==41 %}
+        {{topping+100}}
+
+            
+    {% else %}
+        <p>{{topping}}</p>        
+        
+    {% endif %}
+
+{% endfor %}
+
+<p>{{favorite_pizza.1}}</p>  
+<p>{{favorite_pizza.0 | reverse}}</p>  

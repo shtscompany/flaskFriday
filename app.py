@@ -1,7 +1,17 @@
 from flask import Flask, render_template, redirect
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
 
 app=Flask(__name__)
 app.debug=True
+
+app.config['SECRET_KEY']="my Secret  key"
+# Create a Form Class
+class NamerForm(FlaskForm):
+    name=StringField("What's Your Name", validators=[DataRequired()])
+    submit=SubmitField("Submit")
+
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -24,3 +34,17 @@ def index():
 @app.route('/user/<name>')
 def user(name):
     return render_template("user.html", name=name)
+
+
+# Crete Name Page
+@app.route('/name', methods=['GET', 'POST'])
+def name():
+    name=None
+    form=NamerForm()
+    # Validate Form
+    if form.validate_on_submit():
+        name=form.name.data
+        form.name.data=''
+    return render_template('name.html',
+                           name = name,
+                           form = form)

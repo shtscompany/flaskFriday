@@ -1,6 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<!-- falsh mesaage  -->
+{% for message in get_flashed_messages() %}
+<div class="alert alert-success alert-dismissible fade show my-4" role="alert">
+    <strong>{{message}} </strong> 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+        
+{% endfor %}
+
+
     {% if name %}
         <h1>Hello {{name}}!!</h1>         
     {% else %}

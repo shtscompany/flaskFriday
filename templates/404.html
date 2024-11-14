@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<center>
-    <h1>Error 404</h1>  
-    <p>Page not found try again ..</p>  
-</center>
+{% block pageNotFoundStyle%}
+<link rel="stylesheet" href="{{ url_for('static', filename='./css/404.css') }}">
+<h1 id="errorMessage"></h1>
+<section class="error-container">
+  <span class="four"><span class="screen-reader-text"></span></span>
+  <span class="zero"><span class="screen-reader-text"></span></span>
+  <span class="four"><span class="screen-reader-text"></span></span>
+</section>
+<h3 id="pageNotFound"></h3>
+<script src="{{ url_for('static', filename='./js/404.js') }}"></script>
 {% endblock %}
